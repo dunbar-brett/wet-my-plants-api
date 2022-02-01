@@ -1,0 +1,20 @@
+{
+  "name": "wet-my-plants-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dunbar-brett/wet-my-plants-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dunbar-brett/wet-my-plants-api/issues"
+  },
+  "homepage": "https://github.com/dunbar-brett/wet-my-plants-api#readme"
+}
