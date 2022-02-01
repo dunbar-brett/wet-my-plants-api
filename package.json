@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dunbar-brett/wet-my-plants-api/issues"
   },
-  "homepage": "https://github.com/dunbar-brett/wet-my-plants-api#readme"
+  "homepage": "https://github.com/dunbar-brett/wet-my-plants-api#readme",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
 }
