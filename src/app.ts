@@ -1,17 +1,16 @@
 import 'reflect-metadata';
-import express, { application } from 'express';
-import {createConnection} from "typeorm";
+// import {Request, Response} from "express"; // do i need these?
+import express from 'express';
+import bodyParser from 'body-parser';
 
-createConnection().then(connection => {
-    const app = express();
-    const port = 3000;
-    app.use(express.json());
+// TODO: refactor create connection into index.ts
+const app = express();
+app.use(bodyParser.json);
 
-    app.get('/', (req, res) => {
-        res.send('Hey buddy! Nodemon installed!!');
-    });
-    
-    app.listen(port, () => {
-        return console.log(`Express is listening at http://localhost:${3000}`);
-    });
-}).catch(error => console.log(error));
+app.get('/', (req, res) => {
+    res.send('Hey buddy! Nodemon installed!!');
+});
+
+
+
+export default app;
