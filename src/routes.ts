@@ -1,10 +1,10 @@
 import {body, param} from 'express-validator';
-import {user} from './controller/user';
+import { Users } from './controller/users';
 
 export const Routes = [{
     method: 'get',
     route: '/users',
-    controller: user,
+    controller: Users,
     validation: []
 }];
 
