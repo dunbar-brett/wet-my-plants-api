@@ -34,6 +34,13 @@ export const Routes = [{
     validation: [
       param('id').isInt(),
     ],
-  }];
-
+  }, {
+    method: "post",
+    route: "/",
+    controller: Users,
+    action: "debugAdd",
+    validation: []
+  }
+];
+// TODO PUT users
 // TODO set up routes for Plants
