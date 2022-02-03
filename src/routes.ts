@@ -36,9 +36,9 @@ export const Routes = [{
     ],
   }, {
     method: "post",
-    route: "/",
+    route: "/users/test",
     controller: Users,
-    action: "debugAdd",
+    action: "testAdd",
     validation: []
   }
 ];

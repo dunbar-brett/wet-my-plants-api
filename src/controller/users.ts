@@ -24,8 +24,7 @@ export class Users {
         return this.userRepo.remove(userToRemove);
     }
 
-    async dummyData(req: Request, res: Response, next: NextFunction) {
-        //const user1 =  new User;
+    async testAdd(req: Request, res: Response, next: NextFunction) {
         // const user2 = new User {
         //     name: 'midna',
         //     email: 'midna@gmail.com',
@@ -42,9 +41,6 @@ export class Users {
             role: 'admin'
         }));
         if (!res1) throw new Error('User not found.');
-
-        //const res2 = this.userRepo.save(user1);
-        //if (!res2) throw new Error('User not found.');
 
         return res1;
     }

@@ -1,6 +1,7 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
+@Index(["email"], { unique: true })
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -14,17 +15,17 @@ export class User {
     @Column()
     password: string;
 
-    @Column("varchar", {array: true}) // this might break
-    locations: string[];
+    @Column("varchar", {array: true, nullable: true}) // this might break
+    locations?: string[];
 
-    @Column("varchar")
-    guestId: string;
+    @Column("varchar", { nullable: true })
+    guestId?: string;
 
-    @Column("date")
-    guestStartDate: string;
+    @Column("date", { nullable: true })
+    guestStartDate?: string;
 
-    @Column("date")
-    guestEndDate: string;
+    @Column("date", { nullable: true })
+    guestEndDate?: string;
 
     @Column("text")
     role: string;
