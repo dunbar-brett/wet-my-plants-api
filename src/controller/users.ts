@@ -20,28 +20,24 @@ export class Users {
 
     async remove(req: Request, res: Response, next: NextFunction) {
         let userToRemove = await this.userRepo.findOne(req.params.id);
+
         if (!userToRemove) throw new Error('User not found.');
         return this.userRepo.remove(userToRemove);
     }
 
     async testAdd(req: Request, res: Response, next: NextFunction) {
-        // const user2 = new User {
-        //     name: 'midna',
-        //     email: 'midna@gmail.com',
-        //     password: 'password1234',
-        //     locations: ['dark realm'],
-        //     role: 'user'
-        // };
-
-        const res1 = this.userRepo.save(this.userRepo.create({
+        const result = this.userRepo.save(this.userRepo.create({
             name: 'midna',
             email: 'dummy@gmail.com',
             password: 'password1234',
             locations: ['office'],
-            role: 'admin'
+            role: 'user'
         }));
-        if (!res1) throw new Error('User not found.');
 
-        return res1;
+        if (!result) throw new Error('User not found.');
+
+        return result;
     }
 };
+
+// TODO: Add Guest endpoints
