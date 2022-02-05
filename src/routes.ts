@@ -24,7 +24,7 @@ export const Routes = [
     method: "post",
     route: "/users",
     controller: Users,
-    action: "create",
+    action: "save",
     validation: [
       body('name').isString(),
       body('email').isString(),

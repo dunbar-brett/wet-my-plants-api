@@ -7,7 +7,7 @@ const port = config.port;
 createConnection().then(async connection => {
     app.listen(port, () => {
         return console.log(
-            `Express is listening at http://localhost:${port}`
+            `\nExpress is listening at http://localhost:${port}\n`
         );
     });
 }).catch(error => console.log(error));

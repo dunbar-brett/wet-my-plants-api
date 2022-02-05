@@ -12,3 +12,18 @@ services:
       - '5432:5432'
     volumes:
       - ./database/wmp-db:/var/lib/postgresql/data/
+  app:
+    build: .
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/wmp-db
+      NODE_ENV: development
+      PORT: 3000
+    # entrypoint: /bin/sh './scripts/node-dev.sh'
+    ports:
+      - "3000:3000"
+    command: npm run dev
+    volumes:
+      - .:/app/
+      - /app/node_modules
