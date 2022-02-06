@@ -1,7 +1,7 @@
-import {Request, Response, NextFunction, Errback} from 'express';
+import { Request, Response, NextFunction, Errback } from 'express';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { Routes } from './routes';
+import { Routes } from './Routes/routes';
 import { validationResult } from 'express-validator';
 
 // TODO: give error a type
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 Routes.forEach(route => {
     (app as any)[route.method](route.route,
-        ...route.validation, // middleware validation
+        ...route.middleware,
         async (req: Request, res: Response, next: NextFunction) => {
             try {
                 const errors = validationResult(req);

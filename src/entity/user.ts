@@ -42,7 +42,7 @@ export class User {
     guestEndDate?: string;
 
     @Column({
-        default: 'STANDARD' as Role,
+        default: 'USER' as Role,
         length: 30,
       })
     role: string;
