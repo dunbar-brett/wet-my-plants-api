@@ -1,13 +1,30 @@
-import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-import { config } from './config';
-import app from './app';
-const port = config.port;
+import { Request, Response, NextFunction } from 'express';
+import express from 'express';
+import bodyParser from 'body-parser';
+import  { dbConnection } from './db/dbConnection';
+import routes from './Routes';
 
-createConnection().then(async connection => {
-    app.listen(port, () => {
-        return console.log(
-            `\nExpress is listening at http://localhost:${port}\n`
-        );
-    });
-}).catch(error => console.log(error));
+// TODO: give error a type
+function handleError(err: any, _req: Request, res: Response, _next: NextFunction) {
+    res.status(err.statusCode || 500).send(err.message)
+}
+
+// get routes
+
+const app = express();
+app.use(bodyParser.json());
+
+app.use('/', routes);
+
+app.use(handleError);
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
+
+
+// Connect to DB
+(async () => {
+    await dbConnection();
+})();

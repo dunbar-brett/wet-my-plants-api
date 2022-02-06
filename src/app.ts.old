@@ -1,17 +1,18 @@
-import { Request, Response, NextFunction, Errback } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import bodyParser from 'body-parser';
-import { Routes } from './Routes/routes';
+import { Routes } from './Routes.OLD/routes';
 import { validationResult } from 'express-validator';
 
 // TODO: give error a type
-function handleError(err, _req: Request, res: Response, _next: NextFunction) {
+function handleError(err: any, _req: Request, res: Response, _next: NextFunction) {
     res.status(err.statusCode || 500).send(err.message)
 }
   
 const app = express();
 app.use(bodyParser.json());
 
+// TODO: this feels over engineered, just use express Router
 Routes.forEach(route => {
     (app as any)[route.method](route.route,
         ...route.middleware,
