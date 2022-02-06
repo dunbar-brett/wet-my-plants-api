@@ -30,8 +30,7 @@ export class Users {
             name: 'midna',
             email: 'dummy@gmail.com',
             password: 'password1234',
-            locations: ['office'],
-            role: 'user'
+            locations: ['office']
         }));
 
         if (!result) throw new Error('User not found.');
