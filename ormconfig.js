@@ -13,5 +13,6 @@ export default module = {
        "entitiesDir": "src/entity",
        "migrationsDir": "src/migration",
        "subscribersDir": "src/subscriber"
-    }
+    },
+    "url": `postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@${process.env.PG_HOST}:${process.env.PG_PORT}/${POSTGRES_DB}`
 };

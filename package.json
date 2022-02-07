@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .ts",
     "dev": "nodemon --config nodemon.json src/index.ts",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts",
+    "up-d": "sudo chown -R $USER:$USER . && docker-compose up -d --build",
     "up": "sudo chown -R $USER:$USER . && docker-compose up --build",
     "container": "sudo chown -R $USER:$USER . && docker-compose up",
     "down": "docker-compose down",

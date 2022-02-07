@@ -12,7 +12,9 @@ COPY . .
 # Set up scripts
 # RUN chmod 755 /app/scripts/node-dev.sh
 # RUN chmod 775 /app/scripts/wait-for-it.sh
+# RUN ["chmod", "+x", "/app/scripts/node-dev.sh"]
+# RUN ["chmod", "+x", "/app/scripts/wait-for-it.sh"]
 
 RUN npm run dev
 
-EXPOSE 3000
+EXPOSE $PORT
