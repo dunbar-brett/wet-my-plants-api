@@ -1,12 +1,22 @@
 import { Router } from 'express';
+import { body, param } from 'express-validator';
+import { list, register, update, remove } from '../controller/plants';
 
-// import controller actions
 // import and install jwt
 // import checkRole
-// import validator
+// import/create plant validators
 
 const router = Router();
 
-// input routes
+// TODO needs admin guard
+router.get('/', [], list);
+
+router.post('/', [], register);
+
+router.patch('/:id([0-9]+)', // should this be put?
+    [], 
+    update);
+
+router.delete('/:id([0-9]+)', [], remove);
 
 export default router;

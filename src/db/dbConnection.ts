@@ -6,6 +6,8 @@ export const dbConnection = async () => {
         console.log(`\nDatabase connected!`);
         console.log(`Name: ${connection.name}`);
         console.log(`Database: ${connection.options.database}`);
+    } catch (err) {
+        console.log(err);
     }
-
+    return null; // is this necessary?
 }

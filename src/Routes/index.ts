@@ -1,9 +1,12 @@
 import { Router } from 'express';
 
-export * from './auth';
-export * from './users';
-export * from './plants';
+import auth from './auth';
+import users from './users';
+import plants from './plants';
 
 const router = Router();
+
+router.use('/users', users);
+router.use('/plants', plants);
 
 export default router;

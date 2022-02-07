@@ -1,42 +1,31 @@
-import { getRepository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
 import { User } from '../entity/user';
 
-export class Users {
-    private userRepo = getRepository(User);
-
-    async all(req: Request, res: Response, next: NextFunction) {
-        return this.userRepo.find();
-    }
-
-    async one(req: Request, res: Response, next: NextFunction) {
-        return this.userRepo.findOne(req.params.id);
-    }
-
-    async save(req: Request, res: Response, next: NextFunction) {
-        const user = this.userRepo.create(req.body);
-        return this.userRepo.save(user);
-    }
-
-    async remove(req: Request, res: Response, next: NextFunction) {
-        let userToRemove = await this.userRepo.findOne(req.params.id);
-
-        if (!userToRemove) throw new Error('User not found.');
-        return this.userRepo.remove(userToRemove);
-    }
-
-    async testAdd(req: Request, res: Response, next: NextFunction) {
-        const result = this.userRepo.save(this.userRepo.create({
-            name: 'midna',
-            email: 'dummy@gmail.com',
-            password: 'password1234',
-            locations: ['office']
-        }));
-
-        if (!result) throw new Error('User not found.');
-
-        return result;
-    }
+// TODO extract these to their own files, wrap each in try/catch, and handle errors
+let userRepo:Repository<User>;
+export const all = async (req: Request, res: Response, next: NextFunction) => {
+    userRepo = getRepository(User);
+    return userRepo.find();
 };
 
-// TODO: Add Guest endpoints
+export const one = async (req: Request, res: Response, next: NextFunction) => {
+    userRepo = getRepository(User);
+    return userRepo.findOne(req.params.id);
+};
+
+export const save = async (req: Request, res: Response, next: NextFunction) => {
+    userRepo = getRepository(User);
+    const user = userRepo.create(req.body);
+    return userRepo.save(user);
+};
+
+export const remove = async (req: Request, res: Response, next: NextFunction) => {
+    userRepo = getRepository(User);
+    let userToRemove = await userRepo.findOne(req.params.id);
+
+    if (!userToRemove) throw new Error('User not found.');
+    return userRepo.remove(userToRemove);
+};
+
+// TODO: Add Guest endpoints -- not role guarded

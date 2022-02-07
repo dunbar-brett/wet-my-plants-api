@@ -9,9 +9,7 @@ function handleError(err: any, _req: Request, res: Response, _next: NextFunction
     res.status(err.statusCode || 500).send(err.message)
 }
 
-// get routes
-
-const app = express();
+export const app = express();
 app.use(bodyParser.json());
 
 app.use('/', routes);
