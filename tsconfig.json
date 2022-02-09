@@ -1,13 +1,36 @@
+// {
+//     "compilerOptions": {
+//       "module": "commonjs",
+//       "esModuleInterop": true,
+//       "target": "es6",
+//       "moduleResolution": "node",
+//       "sourceMap": true,
+//       "outDir": "dist",
+//       "emitDecoratorMetadata": true,
+//       "experimentalDecorators": true,
+//       "lib": ["es2015", "es6"],
+//       "typeRoots": ["./src/types/*", "./node_modules/@types"],
+//     }
+//   }
 {
-    "compilerOptions": {
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "target": "es6",
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "outDir": "dist",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "lib": ["es2015", "es6"]
-    }
-  }
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["dom", "es6", "es2017", "esnext.asynciterable"],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "baseUrl": "src/",
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
+  "exclude": ["node_modules", "test/**/*.ts"]
+}

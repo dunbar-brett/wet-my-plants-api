@@ -13,8 +13,8 @@ export class Plant {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, (user: User) => user.id)
-    @JoinColumn({name: 'userId'})
+    @ManyToOne(() => User, (user: User) => user.plants)
+    @JoinColumn()
     user: User;
 
     @Column({length: 100})

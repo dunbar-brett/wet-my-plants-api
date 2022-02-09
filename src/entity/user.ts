@@ -2,8 +2,7 @@ import bcrypt from 'bcryptjs';
 import { 
     Column, 
     CreateDateColumn, 
-    Entity, 
-    Index, 
+    Entity,
     OneToMany, 
     PrimaryGeneratedColumn,
     UpdateDateColumn
@@ -11,8 +10,7 @@ import {
 import { Plant } from './plant';
 import { Role } from './types';
 
-@Entity()
-@Index(["email"], { unique: true })
+@Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
@@ -20,7 +18,7 @@ export class User {
     @Column({length: 100})
     name: string;
 
-    @Column({length: 100})
+    @Column({ unique: true })
     email: string;
 
     @Column()
@@ -47,9 +45,7 @@ export class User {
       })
     role: string;
 
-    @OneToMany(() => Plant, (plant: Plant) => plant.user.id, {
-        cascade: true
-    })
+    @OneToMany(() => Plant, (plant: Plant) => plant.user)
     plants: Plant[];
   
     @Column()

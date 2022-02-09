@@ -1,21 +1,20 @@
 import { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import bodyParser from 'body-parser';
-import  { dbConnection } from './db/dbConnection';
-import routes from './Routes';
 
-// TODO: give error a type
-function handleError(err: any, _req: Request, res: Response, _next: NextFunction) {
-    res.status(err.statusCode || 500).send(err.message)
-}
+// import  { dbConnection } from './db/dbConnection';
+import routes from './Routes';
+import './utils/customSuccess';
+import { errorHandler } from 'middleware/errorHandler';
 
 const app = express();
 app.use(bodyParser.json());
 
 app.use('/', routes);
 
-app.use(handleError);
+app.use(errorHandler);
 
+// TODO Try to add this back in later
 // const port = process.env.PORT || 3000;
 // app.listen(port, () => {
 //     console.log(`Listening on port ${port}!!`);
