@@ -10,7 +10,7 @@ import { errorHandler } from 'middleware/errorHandler';
 const app = express();
 app.use(bodyParser.json());
 
-app.use('/', routes);
+app.use("/", routes);
 
 app.use(errorHandler);
 

@@ -8,6 +8,7 @@ let userRepo:Repository<User>;
 export const all = async (req: Request, res: Response, next: NextFunction) => {
     try {
         userRepo = getRepository(User);
+
         if (userRepo) console.log('user repo exists?')
         const users = await userRepo.find();
         res.customSuccess(200, 'List of users.', users);
@@ -20,6 +21,7 @@ export const all = async (req: Request, res: Response, next: NextFunction) => {
 
 export const one = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
+
     userRepo = getRepository(User);
     try {
         const user = await userRepo.findOne(req.params.id);
@@ -50,6 +52,7 @@ export const save = async (req: Request, res: Response, next: NextFunction) => {
 
         const user = userRepo.create(newUser);
         await userRepo.save(user);
+        
         res.customSuccess(200, 'User successfully created.');
     } catch (error) {
         console.log(`error: ${error}`);
@@ -58,13 +61,27 @@ export const save = async (req: Request, res: Response, next: NextFunction) => {
     }
 };
 
-// TODO clean this up
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
-    userRepo = getRepository(User);
-    let userToRemove = await userRepo.findOne(req.params.id);
+    const id = req.params.id;
 
-    if (!userToRemove) throw new Error('User not found.');
-    return userRepo.remove(userToRemove);
+    userRepo = getRepository(User);
+    try {
+        let userToRemove = await userRepo.findOne(id);
+
+        if (!userToRemove) {
+            const customError = new CustomError(404, 'General', 'Not Found', [`User with id:${id} doesn't exists.`]);
+            next(customError);
+        }
+        userRepo.remove(userToRemove);
+
+        res.customSuccess(200, 'User successfully deleted.',
+            { id: userToRemove.id, name: userToRemove.name, email: userToRemove.email });
+    } catch (error) {
+        console.log(`error: ${error}`);
+        const customError = new CustomError(400, 'Raw', `User with id:'${id}' can't be deleted`, null, error);
+        return next(customError);
+    }
+
 };
 
 // TODO: Add Guest endpoints -- not role guarded
