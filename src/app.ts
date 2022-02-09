@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 // import  { dbConnection } from './db/dbConnection';
 import routes from './Routes';
 import './utils/customSuccess';
-import { errorHandler } from 'middleware/errorHandler';
+import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
 app.use(bodyParser.json());
