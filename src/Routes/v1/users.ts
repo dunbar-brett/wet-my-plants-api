@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { body, param } from 'express-validator';
-import { all, one, save, remove } from '../controller/users';
+import { all, one, save, remove } from '../../controller/users';
 
 // import and install jwt
 // import checkRole

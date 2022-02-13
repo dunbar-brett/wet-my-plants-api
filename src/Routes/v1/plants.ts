@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { body, param } from 'express-validator';
-import { list, register, update, remove } from '../controller/plants';
+import { list, register, update, remove } from '../../controller/plants';
 
 // import and install jwt
 // import checkRole
