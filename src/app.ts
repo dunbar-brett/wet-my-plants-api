@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 // import  { dbConnection } from './db/dbConnection';
-import routes from './Routes';
+import routes from './Routes/v1';
 import './utils/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
 

@@ -5,8 +5,9 @@ import users from './users';
 import plants from './plants';
 
 const router = Router();
+const apiPrefix = 'api/v1';
 
-router.use('/users', users);
-router.use('/plants', plants);
+router.use(`${apiPrefix}/users`, users);
+router.use(`${apiPrefix}/plants`, plants);
 
 export default router;
