@@ -9,12 +9,11 @@ export const all = async (req: Request, res: Response, next: NextFunction) => {
     try {
         userRepo = getRepository(User);
 
-        if (userRepo) console.log('user repo exists?')
         const users = await userRepo.find();
         res.customSuccess(200, 'List of users.', users);
     } catch (error) {
         console.log(`error: ${error}`);
-        const customError = new CustomError(400, 'Raw', `Can't retrieve list of users.`, null, error);
+        const customError = new CustomError(400, 'Raw', `Can't retrieve list of Users.`, null, error);
         return next(customError);
     }
 };
