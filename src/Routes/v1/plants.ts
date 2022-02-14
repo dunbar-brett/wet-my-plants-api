@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, param } from 'express-validator';
+// just need to update this
 import { list, register, update, remove } from '../../controller/plants';
 
 // import and install jwt
