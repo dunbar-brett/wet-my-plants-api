@@ -4,23 +4,24 @@ import { Plant } from '../../entity/plant';
 import { CustomError } from '../../utils/customError';
 
 export const one = async (req: Request, res: Response, next: NextFunction) => {
-    // get params from req.body
+    const id = req.params.id;
+
     const plantRepo = getRepository(Plant);
 
     try {
-        // db action
-        const allPlants = await plantRepo.find();
+        const plant = await plantRepo.findOne(id);
 
         // validations
+        if (!plant) {
+            const customError = new CustomError(404, 'General', `Plant with id:${id} not found.`, ['Plant not found.']);
+            return next(customError);
+        }
 
-        // return success with object if needed
-        res.customSuccess(200, 'List of Plants.', allPlants);
+        res.customSuccess(200, 'Plant found.', plant);
     } catch (error) {
-        // debug error
-        console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
+        console.log(`Error in PlantController - one\nCatch Error: ${error}\n`);
 
-        // set up custom error
-        const errorMessage = `Can't retrieve list of Plants`;
+        const errorMessage = `Can't retrieve plant with id:${id}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }

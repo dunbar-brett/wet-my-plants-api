@@ -23,7 +23,7 @@ export const one = async (req: Request, res: Response, next: NextFunction) => {
 
     userRepo = getRepository(User);
     try {
-        const user = await userRepo.findOne(req.params.id);
+        const user = await userRepo.findOne(id);
 
         if (!user) {
             const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
