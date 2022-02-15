@@ -35,7 +35,7 @@ export class Plant {
     @Column({nullable: true})
     imageUrl?: string;
 
-    @Column("varchar", {length: 300})
+    @Column("varchar", {length: 300, nullable: true})
     notes?: string;
 
     @Column()
