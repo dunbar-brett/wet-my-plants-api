@@ -4,23 +4,23 @@ import { Plant } from '../../entity/plant';
 import { CustomError } from '../../utils/customError';
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
-    // get params from req.body
+    const { user, name } = req.body;
+
     const plantRepo = getRepository(Plant);
 
     try {
-        // db action
-        const allPlants = await plantRepo.find();
+        const plant = new Plant();
+        plant.name = name;
+        plant.user = user;
 
-        // validations
+        const newPlant = plantRepo.create(plant);
+        await plantRepo.save(newPlant);
 
-        // return success with object if needed
-        res.customSuccess(200, 'List of Plants.', allPlants);
+        res.customSuccess(200, 'Plant successfully created.');
     } catch (error) {
-        // debug error
         console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
 
-        // set up custom error
-        const errorMessage = `Can't retrieve list of Plants`;
+        const errorMessage = `Plant: ${name} can't be created`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }

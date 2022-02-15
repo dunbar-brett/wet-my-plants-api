@@ -43,14 +43,14 @@ export const save = async (req: Request, res: Response, next: NextFunction) => {
 
     userRepo = getRepository(User);
     try {
-        const newUser = new User();
-        newUser.name = name;
-        newUser.password = password;
-        newUser.hashPassword();
-        newUser.email = email;
+        const user = new User();
+        user.name = name;
+        user.password = password;
+        user.hashPassword();
+        user.email = email;
 
-        const user = userRepo.create(newUser);
-        await userRepo.save(user);
+        const newUser = userRepo.create(user);
+        await userRepo.save(newUser);
         
         res.customSuccess(200, 'User successfully created.');
     } catch (error) {
