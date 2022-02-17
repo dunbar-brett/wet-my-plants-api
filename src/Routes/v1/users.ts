@@ -10,7 +10,7 @@ const router = Router();
 
 // TODO: add checkrole('ADMIN') for all routes
 // input routes (route, middleware, action)
-router.get('/all', [], all);
+router.get('/', [], all);
 
 router.get('/:id([0-9]+)', [], one);
 

@@ -24,11 +24,9 @@ export class User {
     @Column()
     password: string;
 
+    // TODO create a location entity
     @Column("varchar", {array: true, nullable: true})
     locations?: string[];
-
-    // @Column("json", {array: true, nullable: true})
-    // locationsObj?: string[];
 
     @Column("varchar", { nullable: true })
     guestId?: string;

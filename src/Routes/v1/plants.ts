@@ -11,7 +11,7 @@ const router = Router();
 // TODO needs admin guard
 router.get('/', [], list);
 
-router.get('/all:id([0-9]+)', listById);
+router.get('/all/:id([0-9]+)', listById);
 
 router.get('/:id([0-9]+)', one);
 
