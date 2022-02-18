@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-import routes from './Routes';
+import routes from './routes';
 import './utils/customSuccess';
 import { errorHandler } from './middleware/errorHandler';
 

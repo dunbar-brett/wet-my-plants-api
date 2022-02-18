@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { changePassword, login, register } from '../../controller/auth/';
+import { changePassword, login, register } from '../../controller/auth';
 
 // TODO import and install jwt
 // TODO import checkRole
