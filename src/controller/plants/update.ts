@@ -4,23 +4,50 @@ import { Plant } from '../../entity/plant';
 import { CustomError } from '../../utils/customError';
 
 export const update = async (req: Request, res: Response, next: NextFunction) => {
-    // get params from req.body
+    const id = req.params.id;
+    const {
+        name,
+        species,
+        locationId,
+        waterFreq,
+        fertilizer,
+        imageUrl,
+        notes,
+    } = req.body;
     const plantRepo = getRepository(Plant);
 
     try {
-        // db action
-        const allPlants = await plantRepo.find();
-
+        const plant = await plantRepo.findOne(id);
+        
         // validations
+        if (!plant) {
+            const customError = new CustomError
+                (404, 'General', `Plant with id:${id} not found.`, ['Plant not found.']);
+            return next(customError);
+        }
 
-        // return success with object if needed
-        res.customSuccess(200, 'List of Plants.', allPlants);
+        plant.name = name;
+        plant.species = species;
+        plant.locationId = locationId;
+        plant.waterFreq = waterFreq;
+        plant.fertilizer = fertilizer;
+        plant.imageUrl = imageUrl;
+        plant.notes = notes;
+
+        try {
+            await plantRepo.save(plant);
+            res.customSuccess(200, 'Plant successfully updated.');
+        } catch (error) {
+            console.log(`Error in Plant controller - update during save\nError: ${error}`);
+
+            const errorMessage = `Can't update plant with id:${id}.`;
+            const customError = new CustomError(400, 'Raw', errorMessage, null, error);
+            return next(customError);
+        }
     } catch (error) {
-        // debug error
-        console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
+        console.log(`Error in PlantController - update during find.\nError: ${error}\n`);
 
-        // set up custom error
-        const errorMessage = `Can't retrieve list of Plants`;
+        const errorMessage = `Can't update plant with id:${id}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }
