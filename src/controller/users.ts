@@ -66,7 +66,7 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
 
     userRepo = getRepository(User);
     try {
-        let userToRemove = await userRepo.findOne(id);
+        const userToRemove = await userRepo.findOne(id);
 
         if (!userToRemove) {
             const customError = new CustomError(404, 'General', 'Not Found', [`User with id:${id} doesn't exists.`]);
@@ -75,9 +75,16 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
         userRepo.remove(userToRemove);
 
         res.customSuccess(200, 'User successfully deleted.',
-            { id: userToRemove.id, name: userToRemove.name, email: userToRemove.email });
+            { 
+                id: userToRemove.id, 
+                name: userToRemove.name, 
+                email: userToRemove.email
+            }
+        );
     } catch (error) {
-        console.log(`error: ${error}`);
+        // Debug error
+        console.log(`Error in UserController - remove: ${error}\n`);
+        
         const customError = new CustomError(400, 'Raw', `User with id:'${id}' can't be deleted`, null, error);
         return next(customError);
     }

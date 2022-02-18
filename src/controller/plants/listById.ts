@@ -4,12 +4,12 @@ import { Plant } from '../../entity/plant';
 import { CustomError } from '../../utils/customError';
 
 export const listById = async (req: Request, res: Response, next: NextFunction) => {
-    // get params from req.body
+    const id = req.params.id;
     const plantRepo = getRepository(Plant);
 
     try {
         // db action
-        const allPlants = await plantRepo.find();
+        const allPlants = await plantRepo.findOne();// by user id
 
         // validations
 

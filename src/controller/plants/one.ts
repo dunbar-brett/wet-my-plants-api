@@ -7,7 +7,6 @@ export const one = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
 
     const plantRepo = getRepository(Plant);
-
     try {
         const plant = await plantRepo.findOne(id);
 
