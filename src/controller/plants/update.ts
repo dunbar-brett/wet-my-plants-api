@@ -36,7 +36,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
 
         try {
             await plantRepo.save(plant);
-            res.customSuccess(200, 'Plant successfully updated.');
+            res.customSuccess(204, 'Plant successfully updated.');
         } catch (error) {
             console.log(`Error in Plant controller - update during save\nError: ${error}`);
 

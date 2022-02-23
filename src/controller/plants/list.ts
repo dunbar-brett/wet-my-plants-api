@@ -9,8 +9,6 @@ export const list = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const allPlants = await plantRepo.find();
 
-        // TODO validations
-
         res.customSuccess(200, 'List of Plants.', allPlants);
     } catch (error) {
         console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
