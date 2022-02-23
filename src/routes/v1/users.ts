@@ -15,7 +15,7 @@ router.get('/', [], list);
 router.get('/:id([0-9]+)', [], one);
 
 // change this to register action and move to auth
-router.post(
+router.patch(
     '/', 
     [
         body('name').isString(),

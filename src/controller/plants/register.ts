@@ -19,7 +19,7 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
         res.customSuccess(201, 'Plant successfully created.');
     } catch (error) {
-        console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
+        console.log(`Error in PlantController - register\nCatch Error: ${error}\n`);
 
         const errorMessage = `Plant: ${name} can't be created`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);

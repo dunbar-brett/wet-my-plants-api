@@ -12,6 +12,6 @@ router.post('/changePassword', changePassword); // add middleware
 
 router.post('/login', login); // add middleware
 
-router.post('/register', register); // add middleware
+router.post('/', register); // add middleware
 
 export default router;

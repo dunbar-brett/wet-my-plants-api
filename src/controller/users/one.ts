@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
 import { User } from '../../entity/user';
-import { CustomError } from 'utils/customError';
+import { CustomError } from '../../utils/customError';
 
 export const one = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
@@ -12,7 +12,7 @@ export const one = async (req: Request, res: Response, next: NextFunction) => {
         
         // Validations
         if (!user) {
-            const customError = new CustomError(404, 'General', `User with id:${id} not found.`, ['User not found.']);
+            const customError = new CustomError(404, 'General', `User with id: ${id} not found.`, ['User not found.']);
             return next(customError);
         }
 

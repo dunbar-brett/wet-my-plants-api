@@ -12,7 +12,7 @@ export const one = async (req: Request, res: Response, next: NextFunction) => {
 
         // validations
         if (!plant) {
-            const customError = new CustomError(404, 'General', `Plant with id:${id} not found.`, ['Plant not found.']);
+            const customError = new CustomError(404, 'General', `Plant with id: ${id} not found.`, ['Plant not found.']);
             return next(customError);
         }
 

@@ -13,7 +13,7 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
         // validations
         if (!plantToRemove) {
             const customError = new CustomError(404, 'General', 'Not Found', [`Plant with id: ${id} doesn't exist.`]);
-            next(customError);
+            return next(customError);
         }
 
         plantRepo.remove(plantToRemove);
@@ -25,7 +25,7 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
             }
         );
     } catch (error) {
-        console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
+        console.log(`Error in PlantController - remove\nCatch Error: ${error}\n`);
 
         const errorMessage = `Can't remove Plant with id: ${id}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
