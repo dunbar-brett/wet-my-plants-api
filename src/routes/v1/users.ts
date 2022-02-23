@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { body, param } from 'express-validator';
-import { all, one, save, remove } from '../../controller/users';
+import { list, one, remove, update } from '../../controller/users/';
 
 // import and install jwt
 // import checkRole
@@ -10,7 +10,7 @@ const router = Router();
 
 // TODO: add checkrole('ADMIN') for all routes
 // input routes (route, middleware, action)
-router.get('/', [], all);
+router.get('/', [], list);
 
 router.get('/:id([0-9]+)', [], one);
 
@@ -21,9 +21,9 @@ router.post(
         body('name').isString(),
         body('email').isString(),
         body('email').isEmail(),
-        body('password').isString()
+        body('role').isString() // todo add validation for role type
     ],
-    save);
+    update);
 
 router.delete('/:id([0-9]+)', [], remove);
 

@@ -4,7 +4,6 @@ import { Plant } from '../../entity/plant';
 import { CustomError } from '../../utils/customError';
 
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
-    // get params from req.body
     const id = req.params.id;
     const plantRepo = getRepository(Plant);
 
@@ -13,7 +12,7 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
 
         // validations
         if (!plantToRemove) {
-            const customError = new CustomError(404, 'General', 'Not Found', [`Plant wiht id:${id} doesn't exist.`]);
+            const customError = new CustomError(404, 'General', 'Not Found', [`Plant with id: ${id} doesn't exist.`]);
             next(customError);
         }
 
@@ -26,10 +25,9 @@ export const remove = async (req: Request, res: Response, next: NextFunction) =>
             }
         );
     } catch (error) {
-        // debug error
         console.log(`Error in PlantController - list\nCatch Error: ${error}\n`);
 
-        const errorMessage = `Can't retrieve list of Plants`;
+        const errorMessage = `Can't remove Plant with id: ${id}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }

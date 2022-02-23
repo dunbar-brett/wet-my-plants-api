@@ -8,7 +8,6 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
     const {
         name,
         email,
-        locations,
         role
     } = req.body;
     const userRepo = getRepository(User);
@@ -25,7 +24,6 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
 
         user.name = name;
         user.email = email;
-        user.locations = locations;
         user.role = role;
 
         try {

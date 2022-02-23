@@ -8,10 +8,10 @@ import { changePassword, login, register } from '../../controller/auth';
 const router = Router();
 
 // input routes
-router.post('/changePassword', changePassword); // replace null with middleware
+router.post('/changePassword', changePassword); // add middleware
 
-router.post('/login', login); // replace null with middleware
+router.post('/login', login); // add middleware
 
-router.post('/register', register); // replace null with middleware
+router.post('/register', register); // add middleware
 
 export default router;
