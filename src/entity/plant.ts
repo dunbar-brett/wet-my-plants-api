@@ -5,7 +5,9 @@ import {
     JoinColumn,
     ManyToOne,
     PrimaryGeneratedColumn,
-    UpdateDateColumn } from 'typeorm';
+    UpdateDateColumn
+} from 'typeorm';
+
 import { User } from './user';
 
 @Entity()

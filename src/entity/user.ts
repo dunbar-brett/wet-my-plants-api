@@ -7,6 +7,8 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
+
+import { Location } from './location';
 import { Plant } from './plant';
 import { Role } from './types';
 
@@ -24,11 +26,10 @@ export class User {
     @Column()
     password: string;
 
-    // TODO create a location entity
-    @Column("varchar", {array: true, nullable: true})
-    locations?: string[];
+    @OneToMany(() => Location, (location: Location) => location.user)
+    locations: Array<Location>;
 
-    @Column("varchar", { nullable: true })
+    @Column({ nullable: true })
     guestId?: string;
 
     @Column("date", { nullable: true })

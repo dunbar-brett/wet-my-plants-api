@@ -1,7 +1,9 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { config } from './config';
+
 import app from './app';
+import { config } from './config';
+
 const port = config.port;
 
 createConnection().then(async connection => {

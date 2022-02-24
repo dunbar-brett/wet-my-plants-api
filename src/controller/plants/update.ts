@@ -1,7 +1,8 @@
 import { getRepository } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
-import { Plant } from '../../entity/plant';
+
 import { CustomError } from '../../utils/customError';
+import { Plant } from '../../entity/plant';
 
 export const update = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
@@ -22,7 +23,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         // validations
         if (!plant) {
             const customError = new CustomError
-                (404, 'General', `Plant with id:${id} not found.`, ['Plant not found.']);
+                (404, 'General', `Plant with id: ${id} not found.`, ['Plant not found.']);
             return next(customError);
         }
 

@@ -1,7 +1,8 @@
 import { getRepository } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
-import { Plant } from '../../entity/plant';
+
 import { CustomError } from '../../utils/customError';
+import { Plant } from '../../entity/plant';
 
 export const remove = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;

@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body, param } from 'express-validator';
+
 import { list, one, remove, update } from '../../controller/users/';
 
 // import and install jwt

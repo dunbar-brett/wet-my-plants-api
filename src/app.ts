@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
+import { errorHandler } from './middleware/errorHandler';
 import routes from './routes';
 import './utils/customSuccess';
-import { errorHandler } from './middleware/errorHandler';
 
 const app = express();
 app.use(bodyParser.json());
