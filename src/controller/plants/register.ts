@@ -21,6 +21,9 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
                 (404, 'General', `User with id: ${userId} not found.`, ['User not found.', 'Plant cannot be registered.']);
             return next(customError);
         }
+
+        // TODO need to verify the location Id with the user object here
+
         const plant = new Plant();
         plant.name = name;
         plant.locationId = locationId;

@@ -5,7 +5,7 @@ import { CustomError } from '../../utils/customError';
 import { Plant } from '../../entity/plant';
 
 export const update = async (req: Request, res: Response, next: NextFunction) => {
-    const id = req.params.id;
+    const plantId = req.params.id;
     const {
         name,
         species,
@@ -14,16 +14,16 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         fertilizer,
         imageUrl,
         notes,
-    } = req.body;
+    } = req.body || null;
     const plantRepo = getRepository(Plant);
 
     try {
-        const plant = await plantRepo.findOne(id);
+        const plant = await plantRepo.findOne(plantId);
         
         // validations
         if (!plant) {
             const customError = new CustomError
-                (404, 'General', `Plant with id: ${id} not found.`, ['Plant not found.']);
+                (404, 'General', `Plant with id: ${plantId} not found.`, ['Plant not found.']);
             return next(customError);
         }
 
@@ -41,14 +41,14 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
         } catch (error) {
             console.log(`Error in Plant controller - update during save\nError: ${error}`);
 
-            const errorMessage = `Can't update plant with id: ${id}.`;
+            const errorMessage = `Can't update plant with id: ${plantId}.`;
             const customError = new CustomError(400, 'Raw', errorMessage, null, error);
             return next(customError);
         }
     } catch (error) {
         console.log(`Error in PlantController - update during find.\nError: ${error}\n`);
 
-        const errorMessage = `Can't update plant with id: ${id}.`;
+        const errorMessage = `Can't update plant with id: ${plantId}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }

@@ -16,10 +16,9 @@ router.get('/all/:id([0-9]+)', listById);
 
 router.get('/:id([0-9]+)', one);
 
-router.put('/', [
+router.post('/:id([0-9]+)', [
     body('name').isString(),
-    body('locationId').isNumeric(),
-    body('user').exists()
+    body('locationId').isNumeric()
 ], register);
 
 router.patch('/:id([0-9]+)',

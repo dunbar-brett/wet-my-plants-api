@@ -3,10 +3,13 @@ import {
     CreateDateColumn,
     Entity,
     JoinColumn,
+    JoinTable,
+    ManyToMany,
     ManyToOne,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from 'typeorm';
+import { Plant } from './plant';
 
 import { User } from './user';
 
@@ -21,6 +24,10 @@ export class Location {
 
     @Column({length: 100})
     name: string;
+
+    @ManyToMany(() => Plant)
+    @JoinTable()
+    plants?: Array<Plant>;
 
     @Column()
     @CreateDateColumn()

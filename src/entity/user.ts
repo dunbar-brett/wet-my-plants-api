@@ -45,7 +45,7 @@ export class User {
     role: string;
 
     @OneToMany(() => Plant, (plant: Plant) => plant.user)
-    plants: Array<Plant>;
+    plants?: Plant[];
   
     @Column()
     @CreateDateColumn()

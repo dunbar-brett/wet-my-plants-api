@@ -8,6 +8,7 @@ import {
     UpdateDateColumn
 } from 'typeorm';
 
+import { Location } from './location';
 import { User } from './user';
 
 @Entity()
@@ -26,7 +27,7 @@ export class Plant {
     species?: string;
 
     @Column()
-    locationId: number;
+    locationId: number; // this may or may not be needed
 
     @Column({length: 2, nullable: true})
     waterFreq?: string;

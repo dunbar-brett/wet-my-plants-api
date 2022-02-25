@@ -2,27 +2,26 @@ import { getRepository } from 'typeorm';
 import { NextFunction, Request, Response } from 'express';
 
 import { CustomError } from '../../utils/customError';
-import { Plant } from '../../entity/plant';
+import { User } from '../../entity/user';
 
-// TODO this still needs to be done.
 
 export const listById = async (req: Request, res: Response, next: NextFunction) => {
-    const id = req.params.id;
-    const plantRepo = getRepository(Plant);
+    const userId = req.params.id;
+    const userRepo = getRepository(User);
 
     try {
-        // db action
-        const allPlants = await plantRepo.findOne();// by user id
+        const user = await userRepo.findOne({relations: ["plants"], where: {id: userId}});
+        
+        // validation
+        if (!user) {
+            const customError = new CustomError(404, 'General', `User with id: ${userId} not found.`, ['User not found.']);
+            return next(customError);
+        }
 
-        // validations
-
-        // return success with object if needed
-        res.customSuccess(200, 'List of Plants.', allPlants);
+        res.customSuccess(200, 'List of User\'s Plants.', user.plants);
     } catch (error) {
-        // debug error
         console.log(`Error in PlantController - listById\nCatch Error: ${error}\n`);
 
-        // set up custom error
         const errorMessage = `Can't retrieve list of Plants`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
