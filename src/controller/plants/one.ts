@@ -21,7 +21,7 @@ export const one = async (req: Request, res: Response, next: NextFunction) => {
     } catch (error) {
         console.log(`Error in PlantController - one\nCatch Error: ${error}\n`);
 
-        const errorMessage = `Can't retrieve plant with id:${id}.`;
+        const errorMessage = `Can't retrieve plant with id: ${id}.`;
         const customError = new CustomError(400, 'Raw', errorMessage, null, error);
         return next(customError);
     }

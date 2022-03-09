@@ -42,7 +42,7 @@ export const update = async (req: Request, res: Response, next: NextFunction) =>
             console.log(`Error in Plant controller - update during save\nError: ${error}`);
 
             const errorMessage = `Can't update plant with id: ${plantId}.`;
-            const customError = new CustomError(400, 'Raw', errorMessage, null, error);
+            const customError = new CustomError(409, 'Raw', errorMessage, null, error);
             return next(customError);
         }
     } catch (error) {
