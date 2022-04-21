@@ -26,9 +26,14 @@ export const validatorChangePassword = (req: Request, res: Response, next: NextF
     }
   
     if (errorsValidation.length !== 0) {
-      const customError = new CustomError(400, 'Validation', 'Login validation error', null, null, errorsValidation);
+      /*
+            422 (Unprocessable Entity) response status code indicates that the server 
+            understands the content type of the request entity, and the syntax of the 
+            request entity is correct, but it was unable to process the contained instructions.
+      */
+      const customError = new CustomError(422, 'Validation', 'Login validation error', null, null, errorsValidation);
       return next(customError);
     }
-    
+
     return next();
 };

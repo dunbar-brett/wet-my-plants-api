@@ -45,9 +45,9 @@ export const validatorRegister = (req: Request, res: Response, next: NextFunctio
 
     if (errorsValidation.length !== 0) {
         /*
-            422 (Unprocessable Entity) status code means the server understands the content type of the request entity status code is
-            inappropriate, and the syntax of the request entity is correct (thus a 400 (Bad Request) status code is inappropriate) 
-            but was unable to process the contained instructions. 
+            422 (Unprocessable Entity) response status code indicates that the server 
+            understands the content type of the request entity, and the syntax of the 
+            request entity is correct, but it was unable to process the contained instructions.
         */
         const customError = new CustomError(422, 'Validation', 'Register validation error', null, null, errorsValidation);
         return next(customError);
